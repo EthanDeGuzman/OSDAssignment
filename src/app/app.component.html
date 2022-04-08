@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"> 
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="active" style="margin-left: 1em;">Home</a>
+    <button class="navbar-toggler" type="button" style="margin-right: 1em;" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/games" routerLinkActive="active">Games</a>
+        <a class="nav-item nav-link" routerLink="/forms" routerLinkActive="active">Form</a>
+        <a *ngIf="user" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+          <a *ngIf="!user" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          <a *ngIf="!user" class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          <a *ngIf="user" class="nav-item nav-link" (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div *ngIf="user"><h4 class="text-center text-success"> Current User: {{user.firstName}} </h4></div>
+
+<div class="row" style="margin-top: 2em;">
+  <router-outlet></router-outlet>
+</div>
+
+</div>
+
+
+
+
+

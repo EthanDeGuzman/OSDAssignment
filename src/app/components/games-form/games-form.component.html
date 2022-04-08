@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row text-center">
+    <h2>Game Details Form:</h2>
+    <span>(To get started click Add Game to add a New Game or select an existing game to update it)</span>
+  </div>
+
+  <div *ngIf="message" class="alert alert-info alert-dismissible show text-center" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" (click)="dismissAlert()" aria-label="Close"></button>
+  </div>
+
+    <div class="row" style="margin-top: 1em;"> 
+        <div class="col-3">
+            <table class="table table-hover table-dark table-bordered" >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let games of gamesList, let i = index " (click)="doGames(games)">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{games.game.title}}</td>
+                  </tr>
+                </tbody>
+              </table>  
+        </div>
+
+        <div class="col-9 text-white bg-dark container-fluid d-flex flex-column" *ngIf="showGamesForm" style="height: 100%">
+            <form [formGroup]="gamesForm" *ngIf="this.gamesForm" (ngSubmit) = "onSubmit(this.gamesForm?.value)">
+
+              <button type="button" class="btn-close btn-close-white"  style="margin-top: 0.25em; margin-bottom: 0.25em;" 
+              aria-label="Close" (click)="closeForm()"></button>
+
+                <div class="row mb-4">
+                  <div class="col">
+                    <div class="form-outline" >
+                      <label for="title" class="form-label"> Title:</label>
+                      <input id="title" type="text" formControlName="title" class="form-control">
+                      <span class="text-danger"
+                                *ngIf="title?.invalid && title?.touched">
+                                Title is required
+                      </span>
+                    </div>
+                  </div>
+
+                    <div class="col">
+                      <div class="form-outline">
+                        <label for="year_release" class="form-label"> Year Release:</label>
+                        <input id="year_release" type="number" formControlName="year_release" class="form-control">
+                        <span class="text-danger"
+                                  *ngIf="year_release?.invalid && year_release?.touched">
+                                  Year Released is required
+                        </span>
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                  <div class="col">
+                    <div class="form-outline">
+                      <label for="price" class="form-label"> Price:</label>
+                      <input id="price" type="number" formControlName="price" class="form-control">
+                      <span class="text-danger"
+                                *ngIf="price?.invalid && price?.touched">
+                                Price is required
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="form-outline">
+                      <label class="form-label" for="rating"> Rating:</label>
+                      <input type="text" id="rating" class="form-control" formControlName="rating"/>
+                      <span class="text-danger"
+                                *ngIf="rating?.invalid && rating?.touched">
+                                Rating is required
+                      </span>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="form-outline mb-4" formGroupName="company">
+                  <label class="form-label" for="company_name"> Company name:</label>
+                  <input type="text" id="company_name" class="form-control" formControlName="name" />
+                  <span class="text-danger"
+                                *ngIf="company_name?.invalid && company_name?.touched">
+                                Company Name is required
+                      </span>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="description"> Description:</label>
+                  <textarea class="form-control" id="description" rows="4" formControlName="description"></textarea>
+                    <span class="text-danger"
+                                *ngIf="description?.invalid && description?.touched">
+                                Description is required
+                    </span>
+                </div>
+                <button type="submit" [disabled]= "!gamesForm?.valid" class="btn btn-primary btn-lg btn-block" style="margin-bottom: 1em;">{{ submit == false ? 'Update' : 'Submit' }}</button>
+                <button type="button" (click)="deleteGame()" class="btn btn-danger btn-lg btn-block" [disabled]= "!currentGame" style="margin-left: 1em; margin-bottom: 1em;">Delete Game</button>
+            </form>
+            
+        </div>
+        <div class="row" style="margin-top: 1em;">
+          <div class="col-4">
+              <button (click)="openAddGame()" *ngIf="showGamesForm == false" class="btn btn-primary btn-lg btn-block"> Add Game</button>
+          </div>
+        </div>
+    </div>
+</div>
