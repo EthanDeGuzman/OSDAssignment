@@ -32,42 +32,6 @@ export class GamesService {
       )
   }
 
-  //Get Method to search a specific game by its title
-  getSearch(query: String, option: String): Observable<Games[]>{
-    console.log('getSearchGames called');
-    switch(option) { 
-      case "Title": { 
-        return this.http.get<Games[]>(`${this.dataUri}?title=` + query)
-        .pipe(
-          retry(1),
-          catchError(this.handleError)
-        )
-      } 
-      case "Price": { 
-        return this.http.get<Games[]>(`${this.dataUri}?price=` + query)
-        .pipe(
-          retry(1),
-          catchError(this.handleError)
-        )
-      } 
-      case "Year": {
-        return this.http.get<Games[]>(`${this.dataUri}?year=` + query)
-        .pipe(
-          retry(1),
-          catchError(this.handleError)
-        )
-     } 
-      default: { 
-        return this.http.get<Games[]>(`${this.dataUri}`)
-        .pipe(
-          retry(1),
-          catchError(this.handleError)
-        )
-      } 
-   }
-    
-  }
-
   //POST Method
   addGame(game: Games): Observable<Games> {
     return this.http.post<Games>(this.dataUri + '/addGame', game)

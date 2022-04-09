@@ -24,7 +24,6 @@ const getGamesFromDatabase = (res) => {
             });
         }
     );
-
 };
 
 //Export Get Method
@@ -80,3 +79,32 @@ exports.deleteGame = functions.https.onRequest((req, res) => {
       getGamesFromDatabase(res);
     });
   });
+
+//Admin Methods
+exports.addAdminRole = functions.https.onCall((data) => {
+    // add custom claim to user
+    return admin.auth().getUserByEmail(data.email).then(user =>{
+        return admin.auth.setCustomuserClaims(user.uid, {
+            admin:true
+        })
+    }).then(() => {
+        return{
+            message: `${data.email} setup admin`
+        }
+    }).catch(err => {
+        return err;
+    })
+})
+
+exports.removeAdminRole = functions.https.onCall((data) => {
+    // add custom claim to user
+    return admin.auth().getUserByEmail(data.email).then(user =>{
+        return admin.auth.setCustomuserClaims(user.uid, null)
+    }).then(() => {
+        return{
+            message: `${data.email} removed as admin`
+        }
+    }).catch(err => {
+        return err;
+    })
+})

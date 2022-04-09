@@ -8,6 +8,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './components/core/auth.guard.guard';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 const routes: Routes = [
   {path: 'games', component: GamesListComponent},
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path: 'users', component: UsersListComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'email-verification', component: VerifyEmailComponent },
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
@@ -27,4 +31,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const routingComponents = [GamesListComponent, GamesFormComponent, PageNotFoundComponent, 
-HomeComponent, LoginComponent, RegisterComponent, UsersListComponent]
+HomeComponent, LoginComponent, RegisterComponent, UsersListComponent, ForgotPasswordComponent, 
+VerifyEmailComponent]

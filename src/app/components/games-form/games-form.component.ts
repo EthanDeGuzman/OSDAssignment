@@ -113,6 +113,7 @@ export class GamesFormComponent implements OnInit {
       });
 
     //Refresh List on screen
+    this.gamesList = this.gamesList;
     this.gamesService.getGames().subscribe({
       next: (value: Games[]) => this.gamesList = value,
       complete: () => console.log(JSON.stringify(this.gamesList)),
@@ -137,6 +138,7 @@ export class GamesFormComponent implements OnInit {
       });
     
     //Refresh List on Screen
+    this.gamesList = this.gamesList;
     this.gamesService.getGames().subscribe({
       next: (value: Games[] )=> this.gamesList = value,
       complete: () => console.log("Game service is finished"),
@@ -162,6 +164,7 @@ export class GamesFormComponent implements OnInit {
     }
 
     //Refresh List on Screen
+    this.gamesList = this.gamesList;
     this.gamesService.getGames().subscribe({
       next: (value: Games[]) => this.gamesList = value,
       complete: () => console.log('Game service finished'),

@@ -11,16 +11,8 @@ import {} from '@angular/fire/database';
 })
 export class AppComponent {
   title = 'WebAssignment';
-  user?: User | null;
 
-  //Get Current User
-  constructor (private userService: UserService, private router: Router) {
-    this.userService.user.subscribe( user => this.user = user)
-  }
+  constructor (public userService: UserService,) {
 
-  //When Logout is clicked redirect to Login Route
-  logout(){
-    this.userService.logout();
-    this.router.navigate(['/login']);
   }
 }

@@ -6,19 +6,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/games" routerLinkActive="active">Games</a>
-        <a class="nav-item nav-link" routerLink="/forms" routerLinkActive="active">Form</a>
-        <a *ngIf="user" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-          <a *ngIf="!user" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-          <a *ngIf="!user" class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-          <a *ngIf="user" class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a class="nav-item nav-link" routerLink="/games" routerLinkActive="active">Game Library</a>
+        <a class="nav-item nav-link" routerLink="/forms" routerLinkActive="active">Modify Library</a>
+        <a *ngIf="userService.userState" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+          <a *ngIf="!userService.userState" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          <a *ngIf="!userService.userState" class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          <a *ngIf="userService.userState" class="nav-item nav-link" (click)="userService.SignOut()">Logout</a>
       </div>
     </div>
   </nav>
 
-  <div *ngIf="user"><h4 class="text-center text-success"> Current User: {{user.firstName}} </h4></div>
-
-<div class="row" style="margin-top: 2em;">
+<div class="row">
   <router-outlet></router-outlet>
 </div>
 

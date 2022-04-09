@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid gradient-custom">
   <div class="row text-center">
-    <h2>Game Details Table:</h2>
+    <h2>Weclome to your Game Library:</h2>
   </div>
 
   <div class="row justify-content-center" style="margin: 1em;" *ngIf="showTitleSearch">
@@ -21,13 +21,13 @@
                 </div>
                 <div class="col input-group">
                     <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Type in Search query" #search>
-                    <button class="btn btn-lg btn-primary" type="submit">Search</button>
+                    <button type="submit" class="btn btn-lg btn-primary"><span class="bi bi-search"></span> Search</button>
                   </div>
             </div>
         </form>
     </div>
-</div>
-
+  </div>
+    <h3 *ngIf="message" class="text-center text-danger">{{message}}</h3>
     <table class="table table-hover table-dark table-bordered" >
         <thead>
           <tr>
@@ -53,5 +53,3 @@
         </tbody>
       </table>
 </div>
-
-<h3 *ngIf="message" class="text-center text-danger">{{message}}</h3>
