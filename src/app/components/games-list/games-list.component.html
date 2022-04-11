@@ -1,6 +1,6 @@
 <div class="container-fluid gradient-custom">
   <div class="row text-center">
-    <h2>Weclome to your Game Library:</h2>
+    <h2 class="fw-bold mt-4 text-white" id="title">Welcome to your Game Library:</h2>
   </div>
 
   <div class="row justify-content-center" style="margin: 1em;" *ngIf="showTitleSearch">
@@ -27,6 +27,8 @@
         </form>
     </div>
   </div>
+
+  <div class="table-responsive">
     <h3 *ngIf="message" class="text-center text-danger">{{message}}</h3>
     <table class="table table-hover table-dark table-bordered" >
         <thead>
@@ -52,4 +54,6 @@
           </tr>
         </tbody>
       </table>
+  </div>
+    
 </div>

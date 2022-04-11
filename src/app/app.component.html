@@ -1,24 +1,63 @@
 <div class="container-fluid">
-  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"> 
-    <a class="navbar-brand" routerLink="/home" routerLinkActive="active" style="margin-left: 1em;">Home</a>
-    <button class="navbar-toggler" type="button" style="margin-right: 1em;" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/games" routerLinkActive="active">Game Library</a>
-        <a class="nav-item nav-link" routerLink="/forms" routerLinkActive="active">Modify Library</a>
-        <a *ngIf="userService.userState" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-          <a *ngIf="!userService.userState" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-          <a *ngIf="!userService.userState" class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-          <a *ngIf="userService.userState" class="nav-item nav-link" (click)="userService.SignOut()">Logout</a>
+  <!-- Navbar -->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" 
+        aria-controls="navbarToggleExternalContent" 
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+        </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" routerLink="/home" routerLinkActive="active">Home</a>
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-item nav-link" routerLink="/games" routerLinkActive="active">Game Library</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="userService.userState" class="nav-item nav-link" routerLink="/forms" routerLinkActive="active">Modify Library</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="userService.userState" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users List</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+
+        <!-- Right elements -->
+      <div class="d-flex align-items-center">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a *ngIf="!userService.userState" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="!userService.userState" class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          </li>
+          <li>
+            <a *ngIf="userService.userState" class="nav-item nav-link" (click)="userService.SignOut()">Logout</a>
+          </li>
+          <li>
+            <a *ngIf="userService.userState" class="nav-item nav-link" routerLink="/profile">
+              <i class="bi bi-person-circle"></i></a>
+          </li>
+        </ul>
       </div>
+      </div>
+      <!-- Collapsible wrapper -->
+
+      
     </div>
   </nav>
 
-<div class="row">
-  <router-outlet></router-outlet>
-</div>
+  <!--Components-->
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
 
 </div>
 

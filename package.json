@@ -24,6 +24,7 @@
     "firebase": "^9.6.10",
     "firebase-functions": "^3.13.2",
     "firebase-tools": "^10.6.0",
+    "jquery": "^3.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

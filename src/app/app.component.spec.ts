@@ -1,16 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { environment } from 'src/environments/environment';
+import { HttpClientTestingModule} from '@angular/common/http/testing';
+import { AngularFireModule } from '@angular/fire/compat';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       declarations: [
         AppComponent
       ],
+      imports: [ AngularFireModule.initializeApp(environment.firebaseConfig), HttpClientTestingModule, RouterTestingModule]
     }).compileComponents();
   });
 
@@ -26,10 +27,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('WebAssignment');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('WebAssignment app is running!');
-  });
 });

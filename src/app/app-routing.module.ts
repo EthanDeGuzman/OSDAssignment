@@ -10,16 +10,18 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './components/core/auth.guard.guard';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {path: 'games', component: GamesListComponent},
-  {path: 'forms', component: GamesFormComponent},
+  {path: 'forms', component: GamesFormComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent},
   {path: 'users', component: UsersListComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'email-verification', component: VerifyEmailComponent },
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: 'email-verification', component: VerifyEmailComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
@@ -29,7 +31,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-export const routingComponents = [GamesListComponent, GamesFormComponent, PageNotFoundComponent, 
-HomeComponent, LoginComponent, RegisterComponent, UsersListComponent, ForgotPasswordComponent, 
-VerifyEmailComponent]

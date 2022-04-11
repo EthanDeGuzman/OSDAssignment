@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row text-center">
-    <h2>Modify your Game Library now</h2>
-    <span>(To get started click Add Game or select an existing game to Update/Delete the game)</span>
+    <h2 class="fw-bold mt-4 text-white" id="title">Modify your Game Library now</h2>
+    <span class="text-white">(To get started click Add Game or select an existing game to Update/Delete the game)</span>
   </div>
 
   <div *ngIf="message" class="alert alert-info alert-dismissible show text-center" role="alert">
@@ -27,11 +27,12 @@
               </table>  
         </div>
 
-        <div class="col-9 text-white bg-dark container-fluid d-flex flex-column" *ngIf="showGamesForm" style="height: 100%">
+        <div class="col-sm-8 text-white bg-dark container-fluid d-flex flex-column" *ngIf="showGamesForm" style="height: 100%">
             <form [formGroup]="gamesForm" *ngIf="this.gamesForm" (ngSubmit) = "onSubmit(this.gamesForm?.value)">
 
-              <button type="button" class="btn-close btn-close-white"  style="margin-top: 0.25em; margin-bottom: 0.25em;" 
-              aria-label="Close" (click)="closeForm()"></button>
+              <button type="button" style="margin-top: 0.25em; margin-bottom: 0.25em;
+              background-color: transparent; border: none; outline: none;" 
+              aria-label="Close" (click)="closeForm()"><i class="bi bi-x-circle-fill" style="color: white;"></i></button>
 
                 <div class="row mb-4">
                   <div class="col">

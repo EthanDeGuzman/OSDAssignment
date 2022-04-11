@@ -8,6 +8,7 @@ import {
 
 import { Router } from '@angular/router';
 import { User } from '../interface/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ import { User } from '../interface/user';
 
 export class UserService {
   userState: any;
-  
+  userList: User[] = [];
+
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -113,7 +115,13 @@ export class UserService {
       merge: true,
     });
   }
- 
+  
+  GetllAllUser(): Observable<User[]> {
+    return this.afs
+    .collection<User>('users')
+    .valueChanges();
+  }
+
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
